@@ -1,0 +1,53 @@
+body{
+    background-color:#EEEEEE;
+}
+
+.bg {
+    background:url("/static/bg1.png") no-repeat cover;
+    background-size:contain;
+}
+
+.modal-content {
+    background-color:#F5F5F5;
+}
+
+.description, .comment{
+    margin-top: 30px;
+}
+
+.rightside {
+    margin-top: 20px;
+    margin-left: 30px;
+    
+}
+
+.rightside .rightside01{
+    border: 1px #ddd solid;
+    padding-bottom: 10px;
+}
+
+.rightside .rightside02{
+    margin-top: 20px;
+    border: 1px #ddd solid;
+    padding-bottom: 10px;
+}
+
+.rightside01 h4,  .rightside02 h4 {
+    color: black;
+    font-weight: bolder !important;
+}
+.article a{
+    display:block; 
+    color: #555;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+
+#commentform div{
+    margin-left: 0px !important;
+}
+
+.mainpage .top {
+    margin-top: 30px;
+}

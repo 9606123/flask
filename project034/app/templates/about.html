@@ -1,0 +1,25 @@
+{% extends "mybase.html"  %}
+    {% block content -%}
+    <div class="container about" style="width: 80%; background-color: white;">
+        <div class="row clearfix" >
+            <div class="column"style="padding: 20px;">
+                <h3>欢迎来到本博客系统</h2>
+                <p>此博客运用Python的Flask web框架所编写，后台数据库保存在mysql中。</p>
+
+                <h3>功能介绍</h3>
+                <p>1. 未登录可以浏览其他人文章、注册账户</p>
+                <p>2. 登录后还可以写文章、查看和删除自己文章</p>
+                <p>3. Admin账号可以查看，编辑和删除所有人的文章</p>
+
+                <h3>项目结构</h3>
+                <p> 此博客遵循flask建议标准factory模式，采用blueprint路由和sqlalchemy数据库orm 模型进行项目的搭建，细节此处略1000字。。。</p>
+
+                <h3>联系方式</h3>
+                <p>QQ:  123456789</p>
+                <p>TEL:  12345678910</p>
+                <p>Email:  admin@admin.cn</p>
+                
+            </div>
+        </div>
+    </div>
+    {%- endblock content %}

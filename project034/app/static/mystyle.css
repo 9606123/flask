@@ -1,0 +1,91 @@
+
+html, body{
+    background-color:#F1F3F4;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content {
+    background-color:#F1F3F4;
+}
+
+.caption{
+    margin-left: 10px;
+}
+
+a.btn {
+  background-color: #FFE4E1;
+  font-size: 14px;
+}
+
+th.mtd, td.mtd {
+    text-align: center;
+    vertical-align:middle !important;
+}
+
+.blogdetail {
+    background-color: white;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.blogdetail .detailinfo{
+    margin-bottom: 15px;
+}
+
+.blogdetail p{
+    white-space: pre-wrap;
+    *white-space: pre;
+    *word-wrap: break-word;
+}
+
+
+.rightside{
+    margin-left:20px;
+    
+}
+
+.rightside1, .rightside2, .rightside3 {
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.content {
+    margin-top: 10px; 
+    padding: 10px 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.article {
+    height: 130px; 
+    width:100%; 
+    font-size:14px;
+}
+
+.article .title{
+    color: black;
+    font: bolder 15px / 160% "Microsoft YaHei", 微软雅黑, Helvetica, Arial, "Lucida Grande", Tahoma, sans-serif;
+}
+
+.article .intro{
+    color: rgb(68, 68, 68);
+    font: 14px / 160% "Microsoft YaHei", 微软雅黑, Helvetica, Arial, "Lucida Grande", Tahoma, sans-serif;
+}
+
+.article .remark{
+    color:#8B8B8B;
+    font: 13px / 160% "Microsoft YaHei", 微软雅黑, Helvetica, Arial, "Lucida Grande", Tahoma, sans-serif;
+}
+
+.adminblog {
+    background-color: white; 
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+.thead-light{
+    background-color: #F1F3F4;
+}

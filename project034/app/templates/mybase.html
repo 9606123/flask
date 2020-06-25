@@ -1,0 +1,193 @@
+{% extends "bootstrap/base.html"  %}
+{%- block head %}
+    <title>酷点博客系统</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+ 
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  href="{{url_for('static', filename='mystyle.css')}}">  
+    {%- endblock styles %}
+{%- endblock head %}
+{% block body -%}
+
+{% block navbar %}
+
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 5px;">
+          <div class="container" style="width: 90%;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color: black;">酷点博客系统</a>
+            </div>
+    
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li id="blogs" class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                <li id="technolgy" ><a href="/?category=技术文章"><span class="glyphicon glyphicon-tint"></span> 技术文章</a></li>
+                <li id="life" ><a href="/?category=生活感想"> <span class="glyphicon glyphicon-briefcase"></span> 生活感想</a></li>
+                <li id="think" ><a href="/?category=杂谈"><span class="glyphicon glyphicon-heart"></span> 杂谈</a></li>
+                <li id="about" ><a href="/about"><span class="glyphicon glyphicon-info-sign"></span> 关于博客</a></li>
+
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right" >
+                {% if session['user'] and session['user']['is_admin'] == True %}
+                <li id="admin" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon  glyphicon-wrench"></span> 后台管理</a>
+                    <ul class="dropdown-menu">
+                        <li><a data-toggle="modal" data-target="" href="/admin"><span class="glyphicon glyphicon-user"></span> 管理博客</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% if session['username'] %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                            <span class="glyphicon glyphicon-user "></span> 
+                            欢迎 {{ session['username'] }} 
+                            <b class="caret"></b> 
+                        </a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><a data-toggle="modal" data-target="" href="/account/logout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                        </ul>
+                    </li>
+
+                {% else %}
+                    <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-user"></span> 登录 </a></li>
+                    <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-log-in"></span> 注册</a></li>
+                {% endif %}
+                </ul>
+            </div>
+          </div>
+        </nav>
+        <div id="register" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">注册账号</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="/account/register" method="post">
+                                <div class="form-group">
+                                    <label for=""><span style="color: red">*</span>用户名</label>
+                                    <input required class="form-control"  name='username' type="text" placeholder="请输入用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""><span style="color: red">*</span>密码</label>
+                                    <input required class="form-control" name='password' type="password" placeholder="请输入密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""><span style="color: red">*</span>确认密码</label>
+                                    <input required class="form-control" name='password2' type="password" placeholder="请再次确认密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">姓：</label>
+                                    <input  class="form-control"  name='first_name' type="text" placeholder="请输入姓">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">名：</label>
+                                    <input class="form-control"  name='last_name' type="text" placeholder="请输入名">
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary" type="submit">注册</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">退出</button>
+                                </div>
+                                <a href="/user/login" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点击登录</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 登录窗口 -->
+        <div id="login" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">登录</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="/account/login" method="post">
+                                <div class="form-group">
+                                    <label for=""><span style="color: red">*</span>用户名</label>
+                                    <input required class="form-control" name='username' type="text" placeholder="请输入用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""><span style="color: red">*</span>密码</label>
+                                    <input required class="form-control" name='password' type="password" placeholder="请输入密码">
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary" type="submit">登录</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">退出</button>
+                                </div>
+                                <a href="/user/register" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号，点击此处进行注册</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%- endblock navbar %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" style="text-align: center;width: 100%; margin-bottom: 5px;">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong>
+                    </div>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+                
+                    
+    {% block content %}
+    {% endblock content%}
+
+    {% block scripts %}
+        <script src="/static/js/jquery-3.5.1.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+      
+
+        <script> 
+            $(document).ready(function(){
+                var location = window.location.pathname;
+                var id = location.split('/')[1];
+                // alert(id);
+                
+                $("li.active").removeClass("active");
+                if (id != "") {
+                    if(id.indexOf("?") != -1){
+                        id = id.split("?")[0];
+                    }
+                    $('#'+id).addClass("active");
+                }
+                else {
+                    $('#home').addClass("active");
+                }
+            });
+            </script> 
+        {% block myscripts %}
+        {% endblock myscripts %}
+    {%- endblock scripts %}
+ 
+{%- endblock body %}

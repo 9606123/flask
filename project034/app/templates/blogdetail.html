@@ -1,0 +1,19 @@
+{% extends "mybase.html"  %}
+{% from '_macro.html' import my_paginate %}
+
+{% block content -%}
+    
+    <div class="container" style="width: 90%">
+      <div class="row col-md-9 blogdetail" >
+        {% if result %}
+          <h3>{{result.subject}}</h3>
+          <p class="detailinfo">{{result.update_time}} {{result.author}} </p>
+          <p> {{ result.content|safe }}</p>
+          {% endif %}
+    </div>
+    {% if result %}
+      {% include 'sidebar.html' %}
+    {% endif %}
+  </div>
+{% endblock content %}
+ 

@@ -1,0 +1,29 @@
+{% extends "mybase.html"  %}
+    {% block content -%}
+    <div class="row clearfix" >
+        <div class="col-md-8 col-md-offset-2 column">
+            <form class="form-group" action="/blogs/add" method="post">
+                <div class="form-group">
+                    <label for=""><span style="color: red">*</span>标题</label>
+                    <input required class="form-control"  name='subject'' type="text" placeholder="请输入标题">
+                </div>
+                <div class="form-group">
+                    <label for=""><span style="color: red">*</span>内容</label>
+                    <!-- <input required class="form-control" name='content' type="text"  placeholder="请输入内容"> -->
+                    <textarea required class="form-control" rows="10" name='content' type="text" placeholder="请输入内容"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="">类别</label>
+                    <input  required class="form-control"  name='category' type="text" placeholder="请输入所属类别">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="">上传图片</label>
+                    <input type="file" class="form-control" style="height:36px;"  name="blogpic" id="uploadFile">
+                </div> -->
+                <div class="text-right">
+                    <button class="btn btn-primary" type="submit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {%- endblock content %}

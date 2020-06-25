@@ -1,0 +1,4 @@
+CREATE DATABASE blogsdb;
+USE blogsdb;
+
+ALTER DATABASE blogsdb DEFAULT CHARACTER SET utf8;

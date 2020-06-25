@@ -1,0 +1,46 @@
+    {% extends "mybase.html"  %}
+    {% from '_macro.html' import my_paginate %}
+
+    {% block content -%}
+    
+    <div class="container" style="width: 90%">
+      <div class="row col-md-9 mainpage" >
+        {% if results %}
+          {% for result in results %}
+          <div class="row clearfix content" >
+              <div class="col-md-3 column">
+                  <img  src="/static/img/intro-bg.jpg" style="width: 180px; height: 150px;"/>
+              </div>
+              <div class="col-md-9 column " style="padding-left: 20px;">
+                  <div class="article" >
+                      <a class="title" href="/blogs/detail/{{result.id}}">{{ result.subject }}</a>
+                      <p class="intro" style="line-height:30px;">
+                          {{ result.content | safe | truncate(90, True)}}  <a href="/blogs/detail/{{result.id}}">阅读全文...</a>
+                      </p>
+                      <p class="remark">更新日期： {{ result.update_time}}  类别：[{{result.category}}] 作者：{{result.author}}</p>
+                      <p class="action">
+                      {% if session['username'] %}
+                        <a class="btn btn-xs " href="/blogs/edit/{{result.id}}" role="button">修改 <span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-xs" href="/blogs/delete/{{result.id}}" role="button">删除 <span class="glyphicon glyphicon-trash"></span></a>
+                      {% endif %}
+                    </p>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+          
+          {% if paginate %}
+            {{ my_paginate(paginate, 'blogs.index') }}
+          {% endif %}
+      {% else %}
+        <div >
+          <p>暂无博客文章</p>
+        </div>
+        {% endif %}  
+    </div>
+    {% if results %}
+      {% include 'sidebar.html' %}
+    {% endif %}
+  </div>
+{% endblock content %}
+ 
